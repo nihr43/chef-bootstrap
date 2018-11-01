@@ -19,12 +19,18 @@ chef_server_url           "https://chef-server.localdomain/organizations/org"
 cookbook_path             ["#{current_dir}/../cookbooks"]
 EOF_KNIFE
 
+rm -rf /root/repo/cookbooks
+
 echo "10.0.0.10 chef-server.localdomain" >> /etc/hosts
 
 cat > /root/post-install.sh << EOF
 scp 10.0.0.10:/root/chefuser.pem /root/repo/.chef/
 knife ssl fetch
-
+cd /root/repo/
+git clone git@github.com:nihr43/cookbooks.git
+cd ./cookbooks
+git config --global user.email "you@example.com"
+git config --global user.name "chefdk"
 EOF
 
 echo "chefdk setup nearly finished.  you need to check the username, key, and chef server url"
