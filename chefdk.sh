@@ -22,7 +22,9 @@ EOF_KNIFE
 echo "10.0.0.10 chef-server.localdomain" >> /etc/hosts
 
 cat > /root/post-install.sh << EOF
-scp
+scp 10.0.0.10:/root/chefuser.pem /root/repo/.chef/
+knife ssl fetch
+
 EOF
 
 echo "chefdk setup nearly finished.  you need to check the username, key, and chef server url"
