@@ -13,11 +13,12 @@ cat > /root/repo/.chef/knife.rb << EOF_KNIFE
 current_dir = File.dirname(__FILE__)
 log_level                 :info
 log_location              STDOUT
-node_name                 "testuser"
+node_name                 "chefuser"
 client_key                "#{current_dir}/chefuser.pem"
-chef_server_url           "https://chef-master.localdomain/organizations/org"
+chef_server_url           "https://chef-server.localdomain/organizations/org"
 cookbook_path             ["#{current_dir}/../cookbooks"]
 EOF_KNIFE
 
+echo "10.0.0.10 chef-server.localdomain" >> /etc/hosts
 
-echo "chefdk setup nearly finished.  you need to set your username, key, and chef server url"
+echo "chefdk setup nearly finished.  you need to check the username, key, and chef server url"
