@@ -25,6 +25,7 @@ echo "10.0.0.10 chef-server.localdomain" >> /etc/hosts
 
 cat > /root/post-install.sh << EOF
 scp 10.0.0.10:/root/chefuser.pem /root/repo/.chef/
+cd /root/repo
 knife ssl fetch
 cd /root/repo/
 git clone git@github.com:nihr43/cookbooks.git
